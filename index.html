@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    </head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins' , sans-serif;
+        }
+        .wrapperAll{
+            background-image: url(./ServiceShop.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .wrapper{
+            background-color: rgba( 0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-left: 500px;
+            height: 100vh;
+            margin:0;
+            z-index: 0;
+        }
+
+        .container{
+            box-shadow: 5px 5px 15px rgba( 0, 0, 0, 0.39);
+            background-color: white;
+            border-radius: 10px;
+            width: 300px;
+        }
+        .contents{
+            width: 300px;
+        }
+        .topContents{
+            /* background-color: red; */
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            width: 250px;
+            margin: 15px;
+        }
+        .login{
+            margin-left: 4px;
+            color: crimson;
+        }
+        form{
+            text-align: center;
+        }
+        .image{
+            text-align: center;
+        }
+        .image img:first-child,.image img:nth-child(2){
+            height: 50px;
+        }
+        .image img:first-child{     
+            position: absolute;
+        }
+        .image img:nth-child(2){
+            opacity: 1;
+            animation: slide-Forward 1.5s ease-in-out;
+        }
+        @keyframes slide-Forward{
+            from{
+                opacity: 0;
+                transform: translateX(-30%);
+            }
+            to{
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .fa-check{
+            color: green;
+            opacity: 1;
+        }
+        .fa-xmark{
+            color: red;
+            opacity: 1;
+        }
+        
+        #togglePassword{        
+            height: 23px;
+            width: 23px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            right: 0;
+            transition: 0.2s ease-in-out;
+            margin-right: 50px;
+            font-size: 13px;
+            color: black;
+            /* background-color: red; */
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 3;
+        }
+        #togglePassword:hover{
+            background-color: rgba( 0, 0, 0, 0.15);
+        }
+        .bi-eye-slash{
+            opacity: 0.5;
+        }
+        .bi-eye{
+            opacity: 1;
+        }
+        .errorUserMessage,.errorPasswordMessage,.labels{                                                                      
+            height: 30px;
+            width: 200px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            position: absolute;
+            margin-top: 60px;
+            padding-left: 30px;
+            color: red;
+            font-size: 11px;
+        }
+        
+        .PasswordLabel,.EmailLabel{
+            font-weight: 400;
+            font-size: 12px;
+            bottom:16px;
+            opacity:0.7;
+            transition : transform 0.5s ease-in-out;
+            color:black;
+            z-index: 0;
+            background: transparent;
+        }
+
+        .labelEffect{
+            transform: translate(-26px,-23px);
+            font-weight: 400;
+            font-size: 12px;
+            color:black;
+            opacity:1;
+        }
+
+        .success-message{
+            color: rgba(76, 187, 23, 1);
+        }
+        .forgotPassword{
+            color: rgba(211, 0, 0, 1);
+            height: 15px;
+            width: 120px;
+            border: none;
+            position: absolute;
+            text-decoration: none;
+            bottom: 48px;
+            right: 41px;
+            font-size: 11px;
+        }
+        .forgotPassword:hover{
+            text-decoration: underline;
+        }
+        .user, .pass{
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            /* background-color: red; */
+        }
+        .user input,.pass input{
+            padding: 5px;
+            padding-left: 30px;
+            margin: 15px;
+            width: 200px;
+            border: none;
+            border-bottom: 1px solid gray;
+            transition: 0.5s ease-in-out;
+            background-color: transparent;
+            z-index: 2;
+        }
+        input:focus{
+            outline:0;
+            border-bottom: 1px solid crimson;
+            box-sizing: border-box;
+        }
+        #user, #lock{        
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.8);
+            position: absolute;
+            margin-right: 170px;
+            top: 23px;
+            
+        }
+        /* [placeholder]::-webkit-input-placeholder{
+            font-size: 12px;
+            transition : 0.4s ease;
+            color:black;
+        }
+        [placeholder]:focus::-webkit-input-placeholder{
+            transform: translate(-26px,-23px);
+            opacity: 0;
+        }         */
+        /* ::-webkit-input-placeholder{
+            font-size: 12px;
+        } */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button{
+            display: none;
+        }
+        .rememberMe{
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            /* background-color: red; */
+            padding-left: 60px;
+            width: 300px;
+            font-size: 12px;
+        }
+        .rememberMe p{
+            padding-left: 9px;
+        }
+        .rememberMe input{
+            height: 20px;
+            width: 12px;
+        }
+        
+        .existAccount{
+            width: 300px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        .existAccount a{
+            font-size: 12px;
+            transition: 1s ease-in-out;
+            color: rgba(211, 0, 0, 1);
+        }
+        
+        .existAccount a:hover {
+            text-decoration: none;
+        }
+        .submitButton, .submitButton a{
+            /* background-color: red; */
+            width: 300px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .submitButton input,.submitButton a{
+            font-size: 15px;
+            font-weight: bold;
+            height: 40px;
+            width: 200px;  
+            cursor: pointer;
+            color: white;
+            background-color: rgba(211, 0, 0, 1);
+            border: none;
+            border-radius: 5px;
+            transition: 0.3s ease-in-out;
+            box-shadow: 0 0 10px 2px grey;
+        }
+        .submitButton input:hover{
+            background:red;
+            color: white;
+            box-shadow: 0 0 10px 1px grey;
+        }    
+        .submitButton input:active,.submitButton a:active{
+            transform: scale(0.9);
+            box-shadow: 0 0 0px 0px white;
+        }
+        .option{
+            font-size: 13px;
+        }
+        .alternateLogin a{
+            background-color: transparent;
+            text-decoration: none;            
+            color: black;
+            font-weight: 300;
+            font-size: 14px;
+            justify-content: start;
+            box-shadow: 0 0 10px 1px rgba(0,0,0,0.3);
+        }
+        .alternateLogin img{
+            height: 30px;
+            padding-left: 10px;
+        }
+        .alternateLogin p{
+            padding-left: 10px;
+        }
+        .alternateLogin a:hover{
+            background-color: rgba( 0, 0, 0, 0.03);
+        }
+    </style>
+    <body>
+        <div class="wrapperAll">
+            <div class="wrapper">
+                <div class="container">
+                    <div class="contents">
+                        <div class="topContents">
+                            <div class="image">
+                                <img src="./LogoPng.png" alt=""><img src="./car.png" alt="">
+                            </div>
+                        <div class="login">
+                            <h1>Login</h1>
+                        </div>
+                        </div>
+                        <div class="info">
+                            <form action="#" method="post" onsubmit="return checkCredentialsMatch()">
+                                <div class="credentials">
+                                    <div class="user"><label class="EmailLabel labels" id="emailLabel">Enter your email id</label><input type="text" id="name" title="Enter your email id" name="Email" required autofocus  onfocus="showPlaceholder(this)" onblur="renamePlaceholder(this)"  oninput="checkLabel(this)">
+                                        <i class="fa fa-envelope" id="user"></i>
+                                        <div class="errorUserMessage" id="errorUserMessage"></div>
+                                    </div>
+                                    <div class="pass"><label class="PasswordLabel labels">Enter your password</label><input type="password" id="password" title="Enter your password" name="Password" required  onfocus="showPlaceholder(this)" onblur="renamePlaceholder(this)"  oninput="checkLabel(this)">
+                                        <a href="#"  class="forgotPassword">Forgot password ?</a> <div class="errorPasswordMessage" id="errorPasswordMessage"></div>
+                                    <i class="bi bi-eye-slash" id="togglePassword" title="Show password" onclick="showPassword()"></i>
+                                    <i class="fa fa-lock" id="lock"></i>
+                                    </div>
+                                    <div class="rememberMe"><input type="checkbox" name="checkbox" id="checkbox" checked required oninvalid="checkCheckbox(this)" oninput="checkCheckbox(this)" ><label for="checkbox" ><p>Remember me</p></label></div>
+                                </div>
+                                    <div class="submitButton"><input type="submit" class="loginButton" value="Login" title="login"></input></div>
+                                    <div class="option">OR</div>
+                                    <div class="alternateLogin submitButton">
+                                        <a href="#"  title="login with google"><img src="./google.png" alt="Google icon"><p>Login with Google</p></a>
+                                    </div>    
+                                    <div class="existAccount"><a href="http://127.0.0.1:3000/Vehicle_Management_System/Signup.html" target="_blank">Don't have an account ?</a></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <script>
+            const username = document.getElementById("name");
+            const labels = document.getElementById("emailLabel");
+            const userIcon = document.querySelector(".fa-envelope");
+            const password = document.getElementById("password");
+            const errorUsername = document.getElementById("errorUserMessage");
+            const errorPassword = document.getElementById("errorPasswordMessage");
+            const email = document.getElementById("user");
+            const lock = document.getElementById("lock");
+            const togglePassword = document.getElementById("togglePassword");
+            const loginButton = document.querySelector(".loginButton")
+            var labelInterval;
+            function toggleLabels(){
+                if(labels.textContent !== "Email" && labels.textContent !== "Mobile Number" ){
+                    if(labels.textContent !== username.title){
+                        labels.textContent = username.title;
+                    }else{
+                        labels.textContent = "Enter your mobile no";
+                    }
+                }
+            }
+            labelInterval = setInterval(toggleLabels,3000)
+            
+            function showPlaceholder(element){
+                var names = element.name;
+                var labelName = '.'+names + "Label";
+                var label = document.querySelector(labelName);
+                label.classList.add("labelEffect");
+                if(label.textContent !== 'Mobile Number'){
+                    label.textContent = element.name
+                }
+            }
+            function renamePlaceholder(element){
+                var field = document.getElementById(element.id);
+                var names = element.name;
+                var labelName = '.'+names + "Label";
+                var label = document.querySelector(labelName);
+                var labelTimeout = setTimeout(function(){
+                    showMessage(label,element.title)
+                },200);
+                if(field.value == ''){
+                    label.classList.remove("labelEffect");
+                    labelTimeout;
+                }else{
+                    clearTimeout(labelTimeout);    
+                }
+                loginButton.addEventListener('click',(()=>{
+                console.log("cleared")
+                clearTimeout(labelTimeout);
+            }))
+            }
+            
+
+            function checkLabel(element){
+                var names = element.name;
+                var labelName = '.'+names + "Label";
+                var label = document.querySelector(labelName);
+                if(names == 'Email'){
+                    var field = document.getElementById(element.id);
+                    const intValue = parseInt(field.value[0]);
+                    (!isNaN(intValue)) ? (userIcon.classList.remove("fa-envelope"),username.setAttribute('type','Number'),userIcon.classList.add("fa-phone"),label.textContent = "Mobile Number" ) : (userIcon.classList.add("fa-envelope"),label.textContent = "Email",username.setAttribute('type','text'));
+                }
+                if(element.value !== ''){
+                    label.style.color = 'rgba(211, 0, 0, 1)';
+                    label.style.fontWeight = "700";
+                }else{
+                    label.style.fontWeight = "400";
+                    label.style.color = 'black';
+                }
+            }
+
+            function showMessage(field, message) {
+                if (field) {
+                    field.textContent = message;
+            }}
+            function checkCheckbox(element){
+            var field = document.getElementById(element.id);
+            if(field.checked){
+                field.setCustomValidity('')
+                console.log('checked')
+            }else{
+                field.setCustomValidity('Please agree to the terms and conditions');
+                console.log('not checked')
+            }}    
+
+            username.addEventListener('input',checkAttributes);
+            password.addEventListener('input',checkAttributes);
+            
+            username.addEventListener('invalid',function(){
+                (username.value.trim() == '') ? (this.setCustomValidity(' '),showMessage(errorUsername,'Email is required'),setTimeout(function(){showMessage(errorUsername,'')},3000)) : null;
+            });
+            password.addEventListener('invalid',function(){
+                (password.value.trim() == '') ? (this.setCustomValidity(' '),showMessage(errorPassword,'Password is required'),setTimeout(function(){showMessage(errorPassword,'')},3000)) : null;
+            });
+            function checkAttributes(){    
+                username.setCustomValidity('')
+                password.setCustomValidity('')
+                const usernameValue = username.value;
+                const passwordValue = password.value;
+                if(userIcon.className == 'fa fa-phone'){
+                    let maxValue = 10;
+                    (usernameValue.length > maxValue) ? (username.value = usernameValue.slice(0,10)) : null;
+                }
+                var label = document.querySelector(".EmailLabel");
+                (usernameValue == '' && passwordValue =='') ? (errorUsername.textContent = '',errorPassword.textContent = '') : null;
+                (usernameValue !=='') ? (errorUsername.textContent = '') : null;
+                (passwordValue !== '') ? (errorPassword.textContent = '') : null;
+            }
+            function showPassword(){
+                (password.type == 'password') ? (password.type = 'text') : (password.type = 'password');
+                (togglePassword.title == 'Show password') ? (togglePassword.title = 'Hide password') : (togglePassword.title = 'Show password');
+                    togglePassword.classList.toggle("bi-eye");
+            }
+            function checkCredentialsMatch(){     
+                const usernameValue = username.value;  
+                const passwordValue = password.value;
+                if(userIcon.className == 'fa fa-envelope' && usernameValue !== 'siva@gmail.com'){
+                    errorUsername.textContent = 'Email is invalid';
+                    username.focus()
+                    return false;
+                }
+                if(usernameValue == 'siva@gmail.com' && passwordValue == 'siva' && errorUsername.trim() !== '' && errorPassword.trim() !== ''||
+                usernameValue == '9566830352' && passwordValue == 'siva' && errorUsername.trim() !== '' && errorPassword.trim() !== '')
+                {
+                    return true;
+                }
+                if(userIcon.className == 'fa fa-phone' && usernameValue !== '9566830352'){
+                    errorUsername.textContent = 'Mobile number is invalid';
+                    username.focus()
+                    return false;
+                }
+                if(passwordValue !== 'siva'){
+                    errorPassword.textContent='Password is invalid'
+                    password.focus()
+                    return false;
+                }
+                
+            }
+        </script>
+    
+    </body>
+    
+    </html>

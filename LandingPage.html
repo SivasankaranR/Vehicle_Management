@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <script src="LandingPage.js"></script>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins' , sans-serif;
+    }
+    .headerContainer{
+        z-index: 2;
+    }
+    .wrapperAll{
+        z-index:0;
+    }
+    .explore{
+        z-index: 1;
+    }
+    body{
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+    body::-webkit-scrollbar{
+        display: none;
+    }
+    .Layout{
+        height: 100vh;
+        margin: auto;
+    }
+    .header,.carSelector,.explore,.customizeCar{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right:0;
+        bottom:0;
+    }
+    .header,.headerContents,.leftSideHeader,.middleHeader,.rightSideHeader,.mode,.customizeCar{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+        width: 100%;
+        z-index:3;
+    }
+    .headerContainer{
+        /* background-color: rgba( 0, 0, 0, 0.09); */
+        height: 70px;
+        width: 100%;
+        position: absolute;
+    }
+    .header{
+        margin: auto;
+        width: 99%;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 2px black;
+    }
+    .leftSideHeader{
+        width: 50%;
+        justify-content: start;
+        padding-left: 30px;
+    }
+    .logo{
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 35px;
+        width: 140px;
+    }
+
+    .TextLogo{
+        margin-left: 7px;
+        background-image: url(./MechFixGOLogo.png);
+    }
+    .location{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        margin-left:30px;
+        font-size: 13px;
+        padding: 7px;
+        background-color: rgba( 0, 0, 0, 0.03);
+        border-radius: 10px;
+        transition: 0.3s ease-in-out;
+        cursor: default ;
+    }
+    .more .fa-caret-down,.location .fa-caret-down{
+        margin-left: 10px;
+        /* background-color: yellow; */
+        padding: 3px;
+        font-size: 12px;
+        transition: 0.3s ease-out;
+    }
+    .location:hover{
+        background-color: rgba( 0, 0, 0, 0.05);
+    }
+    .middleHeader{
+        width: 30%;
+        justify-content: space-between;
+    }
+    .middleHeader a{
+        text-decoration: none;
+    }
+    .middleHeader p{
+        transition: 0.2s ease;
+        /* background-color: yellow; */
+        font-size: 14px;
+        padding: 8px;
+        color: black;
+        border-radius : 10px;
+        cursor: pointer;
+    }
+    .middleHeader p:hover{
+        font-size: 14px;
+        font-weight: 600;
+        background-color: rgba( 0, 0, 0, 0.08);
+    }
+    .middleHeader p:active{
+        color: black;
+    }
+    .moreDropdown,.moreList p,.more{
+        height: 36px;
+        width: 80px;
+        border-radius: 10px;
+    }
+    .more{
+        position: relative;
+        transition : 0.4s ease-in-out;
+        overflow: hidden;
+        /* background-color: red; */
+        
+    }
+    .more:hover{
+        height: 185px;
+        background-color: rgba( 0, 0, 0, 0.7);
+    }
+    .more p:hover,.more:hover .moreText{
+        font-size: 14px;
+        font-weight: 600;
+        color: white;
+    }
+    .moreList{
+        position: absolute;
+        height: 150px;
+        transition : 0.5s ease-in-out;
+        border-radius: 10px;
+    }
+    .more:hover .fa-caret-down{
+        rotate: calc(180deg);
+    } 
+    .moreList p{
+        font-size : 14px;
+        padding: 5px 14px;
+        height: 30px;
+        border-radius: 0px;
+        transition : 0.2s ease-in-out;
+        color: white;
+    }
+    .moreList a:active{
+        color: black;
+    }
+    .moreList p:hover{
+        font-weight: 600;
+        color: black;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .rightSideHeader{
+        width: 20%;
+        justify-content: space-evenly;
+        background-color: white;
+        border-radius: 10px;
+    }
+    .mode{
+        height: 35px;
+        width: 35px;
+        /* background-color: red; */
+        transition : 0.3s ease;
+        border-radius: 50px;
+    }
+    .mode:hover{
+        background-color: rgba( 0, 0, 0, 0.1);    
+    }
+    .fa-moon,.fa-sun{
+        font-size: 15px;
+        padding: 10px 10px;
+        position: absolute;
+        background-color: rgba( 0, 0, 0, 0.08);
+        border-radius: 50px;
+        display: block;
+        cursor: pointer;
+    }
+    .fa-moon{
+        background-color: black;
+        padding: 10px 12px;
+        color: white;
+    }
+    .searchBar{
+        position: absolute;
+        top: 0;
+        right: 0;
+        /* background-color: rgba( 0, 0, 0, 0.08); */
+        height: 110px;
+        width: 250px;
+        transition: 1s ease-in;
+        z-index: 1;
+    }
+    .searchBar input{
+        position: absolute;
+        top: 12px;
+        padding: 8px;
+        padding-left: 20px;
+        background-color: rgba(255, 255, 255, 1);
+        border: none;
+        height: 35px;
+        width: 230px;
+        outline: 0;
+        border-radius: 50px;
+        z-index: 1;
+    }
+    .searchInput::-webkit-input-placeholder{
+        transition: 0.6s ease;
+    }
+    .searchBar input:focus::-webkit-input-placeholder{
+        transform: text-indent 0.4s 0.4s ease;
+        text-indent: -100%;
+    }
+    .slideUpAnimation{
+        animation : slideUp 0.3s ease-in forwards;
+    }
+    @keyframes slideUp{
+        from{
+            top: 70px;
+        }
+        to{
+            top: 12px;
+        }
+    }
+    .slideDownAnimation{
+        animation : slideDown 0.3s ease-in forwards;
+    }
+    @keyframes slideDown{
+        from{
+            top: 12px;
+        }
+        to{
+            top: 70px;
+        }
+    }
+    
+    .fa-magnifying-glass{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 35px;
+        width: 35px;
+        background-color: rgba( 0, 0, 0, 0.08);
+        border-radius: 50px;
+        transition: 0.5s ease-in-out;
+        font-size: 13px;
+        opacity:0.7;
+        cursor: pointer;
+    }
+    .fa-magnifying-glass:hover{
+        background-color: rgba( 0, 0, 0, 0.2);
+    }
+    .fa-magnifying-glass:active{
+        background-color: rgba( 0, 0, 0, 0.3);
+    }
+    .wrapperAll{
+        background-image: url(./Floor.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 660px;
+        /* top:0; */
+    }
+    .car,.toolbox1,.toolbox2,.tyres,.serviceEmployee,.indicatorLights,.carBody{
+        position: absolute;
+        background-size: cover;
+        background-repeat: no-repeat;
+        top: 30px;
+        right: 0;
+        bottom: 0;
+        transition: 2s ease-in;
+        height: 600px;
+        width: 100%;
+        z-index: 0;
+    }
+    .carBody{
+        transition: transform 0s;
+        height: 647px;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        /* opacity: 0; */
+    }
+    .car{
+        background-image: url(./Top-Car.png);
+        backface-visibility: hidden;
+        transform: translateZ(0);
+        animation: SlideIn 3s ease-in-out forwards;
+    }
+    @keyframes SlideIn{
+        from{
+            top:600px;
+        }
+        to{
+            top:20px;
+        }
+    }
+    .greenBody{
+        background-image: url(./Green.png);
+    }
+    .redBody{
+        background-image: url(./Red.png);
+    }
+    .pinkBody{
+        background-image: url(./Pink.png);
+    }
+    .blueBody{
+        background-image: url(./Blue.png);
+    }
+    .orangeBody{
+        background-image: url(./Orange.png);
+    }
+    .indicatorLights{
+        background-image: url(./Indicators\ light.png);
+        animation: blink 0.5s ease-in-out;
+        animation-delay: 8s;
+        opacity:0;
+        z-index: 1;
+    }
+    @keyframes blink{
+        0%,50%,100%{
+            opacity: 0;
+        }
+        25%,75%{
+            opacity: 1;
+        }
+    }
+    .toolbox1,.toolbox2,.tyres,.serviceEmployee{
+        opacity: 0;
+        animation: FadeIn 1s ease-in forwards;
+    }
+    @keyframes FadeIn{
+        to{
+            opacity: 1;
+        }
+    }
+    .toolbox1{
+        background-image: url(./Tools-box-1.png);
+        animation-delay: 4s;
+    }
+    .toolbox2{
+        background-image: url(./Tools-box-2.png);
+        animation-delay: 5s;
+    }
+    .tyres{
+        background-image: url(./Tyres.png);
+        animation-delay: 3s;
+    }
+    .serviceEmployee{
+        background-image: url(./Service-Employee.png);
+        animation-delay: 6s;
+    }
+    .customizeCar{
+        /* background-color: rgba( 0, 0, 0, 0.6); */
+        height: 660px;
+        width: 120px;
+        margin: auto;
+        top:0;        
+        right: 5%;
+    }
+    .customizeCar,.features,.controls{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .customizeCar .features .controls img,.speed{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        width: 30px;
+        transition: 0.4s ease-in-out;
+        border-radius : 50px;
+    }
+    .customizeCar .features .controls img{
+        padding: 4px 2px;
+    }
+    .speed img{
+        position : absolute;
+        background-color: transparent;
+    }
+    .speed img:first-child{
+        rotate : calc(180deg);
+        border : none;
+        height: 20px;
+        transition: 2s ease-in-out;
+        margin-top: 8px;
+        background-color: transparent;
+    }
+    .speed:hover.speed img{
+        background-color: transparent;
+    }
+    
+    .speed:hover .speedPin{
+        rotate : calc(330deg);
+    }
+    .controls img:hover,.speed:hover{
+        box-shadow:  0p 0px 3px 10px white;
+        border: 1px solid white;    
+    }
+    .speed img:hover{
+        border:0px;
+    }
+    .controls img:active,.speed:active{
+        border: 0px;
+        scale:0.8;
+    }
+    .features{
+        background-color: rgba( 0, 0, 0, 1);
+        border : 1px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0px 0px 5px 2px black;
+        top: 3%;
+        scale: 1;
+        height: 50px;
+        width: 50px;
+        border-radius : 50px;
+        transition: 0.6s ease-in-out;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .featureAnimation{
+        animation: press 0.5s ease-in-out;
+    }
+    @keyframes press{
+        0%,100%{
+            scale : 1;
+        }
+        50%{
+            scale : 0.8;
+        }
+    }
+    .featuresFocus{
+        scale: 1;
+        height: 288px;
+        background-color: rgba( 0, 0, 0, 0.9);
+        border : 1px solid white;
+        box-shadow: 0px 0px 0px 0px rgba( 0, 0, 0, 0.4);
+    }
+    .customizeCar .features .controls{
+        justify-content: space-evenly;
+        height: 285px;
+        position: absolute;
+        top:0;
+    }
+    .customizeCar .features .controls .ignition {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .customizeCar .features .controls .ignition .igLight{
+        height: 5px;
+        width: 10px;
+        background-color: orangered;
+        border-radius : 50px;
+    } 
+    .customizeCar .features .controls .ignition p{
+        font-size: 13px;
+        font-weight: 600;
+        padding: 5px;
+        color: white;
+    }
+    .paintFocus{
+        background-color: rgba(255, 255, 255, 0.5);
+        scale : 0.9;
+        border :1px solid rgba(255, 255, 255, 0.5);
+    }
+    .colors{
+        display:flex;
+        position:absolute;
+        bottom :30px;
+        transition: 0.5s ease-in-out;
+        border : 1px solid black;
+        scale: 0;
+    }
+    .colors div{
+        height:20px;
+        width : 20px;
+        transition : 0.2s ease-in;
+        border : 1px solid white;
+        /* border-radius : 50px; */
+        cursor : pointer;
+    }
+    .colors div:hover{
+        scale: 1.1;
+    }
+    .colors .red{
+        background-color: #CE161B;
+    }
+    .colors .blue{
+        background-color: #2F60A9;
+    }
+    .colors .green{
+        background-color: #3EA733;
+    }
+    .colors .pink{
+        background-color: #AF1B6F;
+    }
+    .colors .orange{
+        background-color: #E45600;
+    }
+    .colors .metallicSilver{
+        background-color: #546263;
+    }
+    .explore{
+        height: 600px;
+        width: 50%;
+        top: 60px;
+        left: 50%;
+        padding: 60px;
+        /* background-color: red; */
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+    }
+    .exploreTexts{
+        margin-top: 80px;
+    }
+    .exploreTexts p:first-child{
+        font-size:40px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        line-height: 1.3;
+        color: white;
+    }
+    .exploreTexts p:nth-child(2){
+        font-size:14px;
+        margin-bottom: 30px;
+        color: white;
+    }
+    .exploreTexts button,.contactUs{
+        padding: 15px 20px;
+        border: none;
+        outline:  0;
+        transition: 0.4s ease-in-out;
+        border-radius: 5px;
+        box-shadow: 3px 3px 10px rgba( 0, 0, 0, 0.39);
+        background-color: red;
+        cursor: pointer;
+    }   
+    .contactUs{
+        border: 2px solid rgba(211, 0, 0, 1);
+        color: rgba(211, 0, 0, 1);
+        background-color: white;
+        transition: 0.2s ease-in-out;
+        box-shadow: none;
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+    .exploreTexts button:hover{
+        background-color:  rgba(211, 0, 0, 1);
+    }
+    .contactUs:hover{
+        background-color:  red;
+        border: 2px solid red;
+        color: white;
+    }
+    .contactUs:active{
+        box-shadow: 3px 3px 10px rgba( 0, 0, 0, 0.39);
+        scale: 0.8;
+    }
+    .exploreTexts button:active{
+        background-color:  red;
+        scale: 0.8;
+    }
+    .exploreTexts h3{
+        color: white;
+    }
+    .carSelector{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba( 0, 0, 0, 0.39);
+        position: fixed;
+        height: 565px;
+        width: 480px;
+        top:60px;
+        left: 65%;
+        z-index: 3;
+        /* display : none; */
+    }
+    .container{
+        box-shadow: 5px 5px 15px rgba( 0, 0, 0, 0.39);
+        background-color: white;
+        border-radius: 5px;
+        height: 500px;
+        width: 420px;
+        padding: 35px
+    }
+    .navigationBar{
+        height: 100vh;
+        background-color: white;
+        position:relative;
+        z-index:2;
+    }
+    .BoxTitle p:first-child{
+        font-size:26px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    
+</style>
+<body>
+    <div class="Layout">
+        <div class="headerContainer">
+        <header class="header">
+            <section class="headerContents">
+                <article class="leftSideHeader">
+                    <div class="logo TextLogo"></div>
+                    <p class="location">Select your Location <i class="fa-solid fa-caret-down"></i></p>
+                </article>
+                <article class="middleHeader">
+                    <a href=""><p>Home</p></a>
+                    <a href=""><p>About</p></a>
+                    <a href=""><p>Services</p></a>
+                    <a href=""><p>Blog</p></a>
+                <div class="moreDropdown">
+                    <div class="more" ><p class="moreText">More  <i class="fa-solid fa-caret-down"></i></p>
+                            <div class="moreList">
+                                <a href=""><p>FAQ</p></a>
+                                <a href=""><p>Terms</p></a>
+                                <a href=""><p>Privacy</p></a>
+                                <a href=""><p>Offers</p></a>
+                                <a href=""><p>Reviews</p></a>
+                            </div>
+                    </div>
+                </div>                                                                                                  
+                </article>
+                <article class="rightSideHeader">
+                    <i class="fa-solid fa-magnifying-glass" ,onclick="visibleSearchBar()"></i>
+                    <a href="#"><button class="contactUs"><h4>Contact us</h4></button></a>
+                    <div class="mode">
+                        <i class="fa-solid fa-sun" ,onclick="darkMode(this)"></i>
+                    </div>
+                </article>
+                <div class="searchBar">
+                    <input type="text" class="searchInput" placeholder="search services">
+                </div>
+            </section>
+        </header>
+        </div>
+        <main>
+        <section class="wrapperAll">
+            <div class="car">
+                <img src="./.png" alt="" class="carBody">
+            </div>
+            <div class="indicatorLights"></div>
+            <div class="toolbox1"></div>
+            <div class="toolbox2"></div>
+            <div class="tyres"></div>
+            <div class="serviceEmployee"></div>
+        </section>
+        <section class="customizeCar">
+            <div class="features" ,onclick="showControls(event)">
+                <div class="controls">
+                    <div class="ignition">
+                        <div  class="igLight"></div>
+                        <p class="igName">Start</p>
+                    </div>
+                    <img src="./Controls/Head Light white.png" alt="" class="headLightBeam access" title ="Head Light">
+                    <img src="./Controls/Indicator white.png" alt="" class="indicator access" title = "Indicator">
+                    <img src="./Controls/Brake white.png" alt="" class="brake access" title ="Brake">
+                    <img src="./Controls/Horn white.png" alt="" class="horn access" title ="Horn">
+                    <div class="speed" value="Speed access">
+                        <img src="./Controls/Speed meter pointer white.png" alt="" class="speedPin" title="Speed meter pointer">
+                        <img src="./Controls/Speed meter white.png" alt="" class="speedMeter" title="Speed meter">
+                    </div>
+                    <img src="./Controls/Paint Bucket white.png" alt="" class="paintBucket access" title="Paint Bucket">
+                </div>
+            </div>
+            <div class="colors" ,onclick="changeColor(event)">
+                <div title="Red" class="red color"></div>
+                <div title="Blue" class="blue color"></div>
+                <div title="Green" class="green color"></div>
+                <div title="Pink" class="pink color"></div>
+                <div title="Orange" class="orange color"></div>
+                <div title="" class="metallicSilver color"></div>
+            </div>
+        </section>
+        <section class="explore">
+            <div class="exploreTexts">
+                <p>Professional Car Repair and Maintenance</p>
+                <p>Lorem, ipsum dolor sit a consectetur adipisicing elit. Quos, ex! Debitis, consectetur.
+                    Sed harum quasi repellat dolor 
+                    aliquam, quis quos, deleniti iste, sequi cum dolores accusantium deserunt autem 
+                    dolore soluta.</p>
+                <a href="#"><button class="ReadMore"><h3>Read more</h3></button></a>
+            </div>
+        </section>
+        </main>
+        <!-- <aside class="carSelector">
+            <div class="container">
+                <div class="BoxTitle">
+                    <p>Discover Top-Notch Car Services in chennai</p>
+                    <p>Get quick quotes for your car service needs.</p>
+                </div>
+                
+            </div>
+        </aside> -->
+        <section class="navigationBar">
+            <div class="">
+                
+            </div>
+        </section>
+    </div>
+
+
+
+    <script>
+            
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .main, .sub, .imageContainer, .Icon, .images{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .main{
+        height: 100vh;
+        width: 100%;
+        margin : auto;
+        
+    }
+    .sub,.imageContainer{
+        height: 500px;
+        width: 700px;
+        border: 1px solid black;
+        border-radius : 10px;
+        background-color: grey;
+    }
+    .imageContainer,.images{
+        height: 480px;
+        width: 680px;
+        overflow: hidden;
+        background-color: white;
+        scroll-behavior: smooth;
+        border-radius : 10px;
+        position: relative;
+    }
+    img{
+        height: 480px;
+        width: 680px;
+        border-radius : 10px;
+        transition: 0.6s ease-in-out;
+        opacity:1;
+    }
+    h2{
+        color: rgba(255,255,255,0.8);
+    }
+    .pic{
+        position: absolute;
+    }
+    .slideLeft{
+        transform: translateX(-100%);
+        display: none;
+    }
+    .slideLeft{
+        transform: translateX(100%);
+        display: none;
+    }
+    .Icon{
+        height: 40px;
+        width: 40px;
+        background-color: rgba(255,255,255,0.2);
+        text-align: center;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 1;
+    }
+    .Icon:active h2{
+        color:black;
+    }
+    .Icon:hover{
+        background-color: rgba(255,255,255,0.4);
+    }
+    .left{
+        left:0;
+    }
+    .right{
+        right:0;
+    }
+    
+
+</style>
+<body>
+    <div class="main">
+        <div class="sub">
+            <div class="imageContainer">
+                <a href="#image3"><span class="left Icon pic" id="left" onclick="slideLeft()"><h2><</h2></span></a>
+                <div class="images pic" >
+                    <img id="image1" class="slides" src="./image1.jpg" alt="">
+                    <img id="image2" class="slides" src="./image2.jpg" alt="">
+                    <img id="image3" class="slides" src="./image3.jpg" alt="">
+                </div>  
+                <a href="#image2"><span class="right Icon pic" id="right" onclick="slideRight()"><h2>></h2></span></a>
+            </div>
+        </div>
+    </div>
+    <script>
+        const left = document.getElementById('left')
+        const right = document.getElementById('right')
+        
+        
+        function slideLeft(){
+            
+        }
+        function slideRight(){
+            
+        }
+
+    </script>
+</body>
+</html>

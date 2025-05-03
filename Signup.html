@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins' , sans-serif;
+    }
+    .wrapperAll{
+        background-image: url(./Floor.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .wrapper{
+        display: flex;
+        justify-content: center;
+        padding-left: 500px;
+        align-items: center;
+        background-color: none;
+        transition: 2s ease-in-out;
+        height: 100vh;
+        margin:0;
+    }
+    
+    .sideContainer{
+        box-shadow: 5px 5px 15px rgba( 0, 0, 0, 0.39);
+        background-color: white;
+        border-radius: 10px 0px 0px 10px;
+        padding: 20px;
+        z-index: 2;
+    }       
+    .container{
+        box-shadow: 5px 5px 15px rgba( 0, 0, 0, 0.39);
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        z-index: 2;
+    }
+    .contents{
+        background-image: url(./Logo.png);
+    }
+    .topContents{
+        /* background-color: red; */
+        height: 50px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: start
+    }
+    .signup{
+        font-size: 20px;
+        margin-left: 4px;
+        color: crimson;
+    }
+    .image img:first-child,.image img:nth-child(2){
+        height: 50px;
+    }
+    .image img:first-child{     
+        position: absolute;
+    }
+    .image img:nth-child(2){
+        opacity: 1;
+        animation: slide-Forward 1.5s ease-in-out;
+    }
+    @keyframes slide-Forward{
+        from{
+            opacity: 0;
+            transform: translateX(-35%);
+        }
+        to{
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    #mobile{
+        position: relative;
+    }
+    .countryCode{
+        /* background-color: red; */
+        height: 20px;
+		width: 45px;
+        display: flex;
+		align-items: center;
+		justify-content: space-around;
+		position: absolute;
+		font-size: 13.5px;
+        left: 55px;
+        bottom: 6px;
+    }
+    .countryCode img{
+        height: 12px;
+        border-radius: 1px;
+        margin-bottom: 3px;
+    }
+    .contents{
+        text-align: center;
+    }    
+    .errorPassword,
+    .eUsername,
+    .ePass, 
+    .ePassword, 
+    .eEnvelope, 
+    .eMobile, 
+    .passAnalyze,
+    .labels{
+        /* border: 1.5px solid red;*/
+        /* background-color: rgba(211, 0, 0, 0.2); */
+        /* color: red; */
+        height: 20px;
+		width: 250px;
+        font-weight: 500;
+        display: flex;
+		align-items: center;
+		justify-content: start;
+		position: absolute;
+        padding-left: 30px;
+        margin-top: 65px;
+		font-size: 11px;
+        color: red;
+        /* display: none; */
+    }
+    
+    .UsernameLabel,
+    .PasswordLabel,.ConfirmLabel,
+    .EmailLabel,.MobileLabel{
+        font-weight: 400;
+        font-size: 12px;
+        bottom: 7px;
+        opacity:0.7;
+        transition : transform 0.5s ease-in-out;
+        color:black;
+        z-index: 0;
+        background: transparent;
+    }
+    .passAnalyze{
+        background-color: rgba(0,0,0,0.2);
+        border-radius: 50px;
+        height: 4px;
+        width: 50px;
+        bottom: 35px;
+        right: 25px;
+        display: none;
+    }
+    .innerBar{
+        border-radius: 50px;
+        height: 4px;
+        width: 10px;
+        transition: 1s ease-in-out;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        display: block;
+    }
+    .HideBar{ 
+        transition: HideBar 1.5s ease-in;
+        animation: HideBar 1.5s ease-in;
+        opacity: 0;
+    }
+    @keyframes HideBar{
+        0%{
+            transform: scale(1);
+            opacity: 1;
+        }
+        50%{
+            transform: scale(1.1);
+            opacity: 1;
+        }
+        100%{
+            transform: scale(0);
+            opacity: 0;
+            
+        }
+    }
+    .eMobile,.MobileLabel{
+        width: 250px;
+        padding-left: 85px;
+        z-index: 2;
+    }
+    .success-message{
+        color: rgba(76, 187, 23, 1);
+    }
+    #togPassword, #togglePassword{        
+        height: 23px;
+        width: 23px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 0;
+        bottom: 5px;
+        transition: 0.2s ease-in-out;
+        margin-right: 30px;
+        font-size: 13px;
+        color: black;
+        /* background-color: red; */
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 4;
+    }
+    .bi-eye-slash{
+        opacity: 0.5;
+    }
+    .bi-eye{
+        opacity: 1;
+    }
+    #togPassword:hover, #togglePassword:hover{
+        background-color: rgba( 0, 0, 0, 0.15);
+    }
+    .user,
+    .pass,
+    .coPass,
+    .email,
+    .mobile{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+        /* background-color: red; */
+    }
+    .user input,.pass input,.coPass input,.email input,.mobile input{
+        padding: 5px;
+        padding-left: 30px;
+        padding-top: 20px;
+        width: 250px;
+        outline: 0;
+        border: none;
+        border-bottom: 1px solid gray;
+        transition: 0.5s ease-in-out;
+        background-color: transparent;
+        z-index: 2;
+    }
+    .mobile input{
+        padding-left: 85px;
+    }
+    input:focus{
+        outline:0;
+        border-bottom: 1px solid crimson;
+        box-sizing: border-box;
+    }
+    #user,#lock,#envelope,#phone{        
+        font-size: 12px;
+        color: rgba(0, 0 ,0 ,0.8);
+        position: absolute;
+        margin-right: 220px;
+        bottom: 12px;
+    }
+    .labelEffect{
+        transform: translate(-26px,-23px);
+        font-weight: 400;
+        font-size: 12px;
+        color:black;
+        opacity:1;
+    }
+    /* [placeholder]::-webkit-input-placeholder{
+        font-size: 12px;
+        transition : 0.4s ease;
+        color:black;
+    }
+    [placeholder]:focus::-webkit-input-placeholder{
+        transform: translate(-26px,-23px);
+        opacity: 0;
+    }        */
+    
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button{
+        display: none;
+    }
+    .rememberMe{
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        /* background-color: red; */
+        padding-left: 25px;
+        width: 300px;
+        font-size: 12px;
+    }
+    .rememberMe p{
+        padding-left: 9px;
+    }
+    .rememberMe input{
+        height: 20px;
+        width: 12px;
+    }
+    
+    
+    .existAccount{
+        width: 300px;
+        height: 30px;
+        display: flex;
+		align-items: center;
+		justify-content: center;
+    }
+    .existAccount a,.rememberMe a{
+        font-size: 12px;
+        transition: 1s ease-in-out;
+        color: rgba(211, 0, 0, 1);
+    }
+    .existAccount a:hover, .rememberMe a:hover{
+        text-decoration: none;
+    }
+    .submitButton, .submitButton a{
+        /* background-color: red; */
+        width: 300px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .submitButton input,.submitButton a{
+        font-size: 15px;
+        font-weight: bold;
+        height: 40px;
+        width: 251px;  
+        cursor: pointer;
+        color: white;
+        background-color: rgba(211, 0, 0, 1);
+        border: none;
+        border-radius: 5px;
+        transition: 0.3s ease-in-out;
+        box-shadow: 0 0 10px 2px grey;
+    }
+    .submitButton input:hover{
+        background:red;
+        color: white;
+        box-shadow: 0 0 10px 1px grey;
+    }    
+    .submitButton input:active,.submitButton a:active{
+        transform: scale(0.9);
+        box-shadow: 0 0 0px 0px white;
+    }
+    .option{
+        font-size: 13px;
+        text-align: center;
+    }
+    .alternateLogin a{
+        background-color: transparent;
+        text-decoration: none;            
+        color: black;
+        font-weight: 300;
+        font-size: 14px;
+        justify-content: start;
+        box-shadow: 0 0 10px 1px rgba(0,0,0,0.3);
+    }
+    .alternateLogin img{
+        height: 30px;
+        padding-left: 10px;
+    }
+    .alternateLogin p{
+        padding-left: 10px;
+    }
+    .alternateLogin a:hover{
+        background-color: rgba( 0, 0, 0, 0.03);
+    }
+
+    
+
+</style>
+<body>
+    <div class="wrapperAll">
+        <div class="wrapper">
+            <div class="sideContainer">
+                
+            </div>
+            <div class="container">
+                    <div class="topContents">
+                    <div class="image">
+                        <img src="./LogoPng.png" alt=""><img src="./car.png" alt="">
+                    </div>
+                    <div class="signup">
+                        <h2>Sign Up</h2>
+                    </div>
+                    </div>
+                    <div class="info">
+                            <form action="#" method="post" onsubmit="return checkCredentials()">
+                            <div class="user">
+                                <label class="UsernameLabel labels">Enter your name</label> <input type="text" maxlength="30" id="name" title="Enter your name" name="Username" required autofocus onfocus="showPlaceholder(this)" onblur="renamePlaceholder(this)"  oninput="checkLabel(this),checkUsernameInput()" onchange="checkUsernameLength()">
+                                <i class="fa fa-user" id="user"></i>
+                                <div class="errorMessage eUsername" id="errorUserMessage"></div>
+                            </div>
+                            <div class="pass">
+                                <label class="PasswordLabel labels">Enter your password</label> <input type="password"  id="password" title="Enter your password" name="Password" required onfocus="showPlaceholder(this)" onblur="renamePlaceholder(this)" oninput="checkLabel(this),checkPasswordInput()" onchange="checkPasswordLength()">
+                                <i class="bi bi-eye-slash" ,id="togglePassword" ,title="Show password" ,onclick="showPassword()"></i>
+                                <i class="fa fa-lock" id="lock"></i>
+                                <div class="errorMessage ePass" id="errorPassMessage"></div>
+                                <div class="errorMessage passAnalyze" id="passwordAnalyzer"><div class="innerBar" id="innerBar"></div></div>
+                            </div>
+                            <!-- <div class="coPass">
+                                <label class="ConfirmLabel labels">Re-type your password</label> <input type="password"  id="confirmPassword" title="Re-type your password" name="Confirm"  disabled  required onfocus="showPlaceholder(this)" onblur="renamePlaceholder(this)" oninput="checkLabel(this),checkPasswordInput()">
+                                <i class="bi bi-eye-slash" id="togPassword" title="Show password" onclick="showConfirmPassword()"></i>
+                                <i class="fa fa-unlock unlock" id="lock"></i>
+                                <div class="errorMessage ePassword" id="errorPasswordMessage"></div>
+                            </div> -->
+                            <div class="email">
+                                <label class="EmailLabel labels">Enter your email address</label> <input type="text"  id="email" title="Enter your email address" name="Email" required onfocus="showPlaceholder(this)" onchange="checkEmailPattern()" onblur="renamePlaceholder(this)" oninput="checkLabel(this),checkEmailInput()">
+                                <i class="fa fa-envelope" id="envelope"></i>
+                                <div class="errorMessage eEnvelope" id="errorEnvelopeMessage"></div>
+                            </div>
+                            <div class="mobile">
+                                <label class="MobileLabel labels">Enter your mobile no</label> <input type="number" id="mobile" title="Enter your mobile no" name="Mobile"  required onfocus="showPlaceholder(this)" onblur="renamePlaceholder(this)" oninput="checkLabel(this),checkMobileInput()" onchange="checkMobilePattern()"> 
+                                <i class="fa fa-phone" id="phone"></i>
+                                <div class="countryCode">
+                                    <img src="./Flag.jpg" alt="indian flag" id="indianCode">+91
+                                </div>
+                                <div class="errorMessage eMobile" id="errorMobileMessage"></div>
+                            </div>
+                            <div class="rememberMe"><input type="checkbox" name="checkbox" id="checkbox" checked required oninvalid="checkCheckbox(this)" oninput="checkCheckbox(this)" ><label for="checkbox"><p>I agree to the <a href="">terms and conditions</a></p></label></div>
+                            <div class="submitButton"><input type="submit" class="signupButton" value="Sign up" title="Sign up"></input></div>
+                            <!-- <div class="option">OR</div>
+                                    <div class="alternateLogin submitButton">
+                                        <a href="#"  title="Signup with google"><img src="./google.png" alt="Google icon"><p>Sign up with Google</p></a>
+                                    </div> -->
+                            <div class="existAccount">
+                                <a href="http://127.0.0.1:3000/Vehicle_Management_System/Login.html" target="_blank">Already have an account ?</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <script>
+        const username = document.getElementById("name");
+        const errorUsername = document.getElementById("errorUserMessage");
+        const password = document.getElementById("password");
+        const confirmPassword = document.getElementById("confirmPassword");
+        const togglePassword = document.querySelector("#togglePassword");
+        const togPassword = document.querySelector("#togPassword");
+        const errorPass = document.getElementById("errorPassMessage");
+        const outerBar = document.getElementById("passwordAnalyzer");
+        const innerBar = document.getElementById("innerBar");
+        const errorPassword = document.getElementById("errorPasswordMessage")
+        const email = document.getElementById("email");
+        const errorEnvelope = document.getElementById("errorEnvelopeMessage")
+        const mobile = document.getElementById('mobile')
+        const errorMobile = document.getElementById("errorMobileMessage")
+        const unlock = document.querySelector('.unlock');
+        const signupButton = document.querySelector(".signupButton")
+
+        function showPassword(){
+            (password.type == 'password') ? (password.type = 'text') : (password.type = 'password');
+            (togglePassword.title == 'Show password') ? (togglePassword.title = 'Hide password') : (togglePassword.title = 'Show password');
+            togglePassword.classList.toggle("bi-eye");
+        }
+        function showConfirmPassword(){
+            (confirmPassword.type == 'password') ? (confirmPassword.type = 'text') : (confirmPassword.type = 'password');
+            (togPassword.title == 'Show password') ? (togPassword.title = 'Hide password') : (togPassword.title = 'Show password');
+            togPassword.classList.toggle("bi-eye");
+        }
+        function showPlaceholder(element){
+            var names = element.name;
+            var field = document.getElementById(element.id);
+            var labelName = '.'+names + "Label";
+            var label = document.querySelector(labelName);
+            label.classList.add("labelEffect");
+            if(element.name == "Confirm")
+            {
+                label.textContent = element.name+" "+"password";    
+            }
+            else{
+                label.textContent = element.name;
+            }
+        }
+        function renamePlaceholder(element){
+            var field = document.getElementById(element.id);
+            var names = element.name;
+            var labelName = '.'+names + "Label";
+            var label = document.querySelector(labelName);
+            var labelTimeout = setTimeout(function(){
+                    showMessage(label,element.title)
+                },200);
+                if(field.value == ''){
+                    label.classList.remove("labelEffect");
+                    labelTimeout;
+                }
+                else{
+                    clearTimeout(labelTimeout);
+                }
+                signupButton.addEventListener('click',(()=>{
+                console.log("cleared")
+                clearTimeout(labelTimeout);
+            }))
+            }   
+        
+        function checkLabel(element){
+            var names = element.name;
+            var labelName = '.'+names + "Label";
+            var label = document.querySelector(labelName);
+            var labelInput = document.getElementById(element.id)
+            const mobilePattern = /^[6-9]{1}[0-9]*$/;
+            const PatternExpression = /^[A-Za-z]+$/;
+            if(labelInput.value !== ''){
+                if(element.id == "mobile"){
+                    (!labelInput.value.match(mobilePattern)) ? (label.style.color = 'black',label.style.fontWeight = "400") : (label.style.color = 'rgba(211, 0, 0, 1)',label.style.fontWeight = "700"); 
+                }
+                else if(element.id == "name"){
+                    (!labelInput.value[0].match(PatternExpression)) ? (label.style.color = 'black',label.style.fontWeight = "400") : (label.style.color = 'rgba(211, 0, 0, 1)',label.style.fontWeight = "700"); 
+                }
+                else{
+                    label.style.color = 'rgba(211, 0, 0, 1)';
+                    label.style.fontWeight = "700";
+                }    
+            }else{
+                    label.style.fontWeight = "400";
+                    label.style.color = 'black';
+            }
+        }
+        function checkUsernameInput(){
+            username.setCustomValidity('');
+            const usernameValue = username.value;
+            (usernameValue.charAt(0)==usernameValue.charAt(0).toLowerCase()) ? (username.value = usernameValue.charAt(0).toUpperCase() + usernameValue.slice(1)) : ((usernameValue.charAt(0)==usernameValue.charAt(0).toUpperCase()) ?  (username.value = usernameValue.charAt(0) + usernameValue.slice(1)) : null);
+            (usernameValue.length > 1 ) ? 
+            (lastValue = usernameValue.charAt(usernameValue.length-1),
+            lastValue == lastValue.toUpperCase() ? 
+            (lastValue = lastValue.toLowerCase(),
+            username.value = (function(){
+                let name = ''
+                for(let i = 0;i<=usernameValue.length-2;i++){
+                    name = name + usernameValue.charAt(i);                
+            }
+                return name + lastValue;
+            })()) : null) : null;
+            const PatternExpression = /^[A-Za-z]+$/;
+            (usernameValue.match(PatternExpression)) ?  (username.setCustomValidity('')) : (username.setCustomValidity('Username is required'));
+            (!usernameValue.match(PatternExpression)) ? 
+                (showMessage(errorUsername,'Username should be valid !!'),
+                (username.value = (function(){
+                    name = ''
+                    for(let i = 0;i <=usernameValue.length-1;i++){
+                        if(usernameValue[i] !== ' ' && usernameValue[i].match(PatternExpression)){
+                            name = name + usernameValue[i];
+                    }}
+                    return name;
+                })())): showMessage(errorUsername,''); 
+            usernameValue == '' ?  showMessage(errorUsername,'') : null;
+            (errorUsername.textContent !== '' ) ? 
+                setTimeout(function(){
+                    showMessage(errorUsername,'');
+                },3000) : null;
+        }
+        function checkUsernameLength(){
+            const usernameValue = username.value;
+            let usernameLength = 4;
+            (usernameValue !== '' && usernameValue.length < usernameLength) ? showMessage(errorUsername,'Should contain at least 4 characters') : (errorUsername.textContent = ''); 
+        }
+        function showMessage(field, message) {
+            if (field) {
+                field.textContent = message;
+        }}
+        function checkPasswordInput(){
+            outerBar.style.display = 'block';
+            password.setCustomValidity('');
+            // confirmPassword.setCustomValidity('')
+            const passwordValue = password.value;
+            // const confirmPasswordValue = confirmPassword.value;
+            // (!passwordValue.trim() == '') ? (confirmPassword.disabled = false) : (confirmPassword.disabled = true);
+            // ((confirmPasswordValue == '' && passwordValue !=='') || passwordValue ==''  ) ? (errorPassword.textContent = '') : (confirmPasswordValue == passwordValue && confirmPasswordValue !== '') ? (unlock.classList.remove('fa-unlock'),unlock.classList.add('fa-lock'),errorPassword.textContent = "Passwords matched",errorPassword.classList.remove("error-message"),errorPassword.classList.add("success-message")) : (unlock.classList.remove('fa-lock'),unlock.classList.add('fa-unlock'),errorPassword.classList.remove('success-message'), errorPassword.textContent = "Passwords doesn't match !!");
+            // (confirmPasswordValue == '') ? (unlock.classList.add('fa-unlock')) : null;
+            (passwordValue !== '' || passwordValue == ''  ) ? (errorPass.textContent='') : null;
+            const PatternExpression = /^\S+$/;
+            (!passwordValue.match(PatternExpression)) ? 
+                (showMessage(errorPass,'space is not allowed !!'),
+                (password.value = (function(){
+                    name = ''
+                    for(let i = 0;i<=passwordValue.length-1;i++){
+                        if(passwordValue[i] !== ' '){
+                        name = name + passwordValue[i];
+                        }
+                    }
+                    return name;
+                })())): showMessage(errorPass,'');
+                if(passwordValue.trim() == ''){
+                innerBar.style.width = '0px';
+                showMessage(errorPass,'')
+            }
+            if(passwordValue.match(/^[A-Za-z0-9]{2,}$/)){
+                innerBar.style.width = '10px';
+                innerBar.style.backgroundColor = 'red';
+            }
+            if(passwordValue.match(/^(?=.*[A-Z])(?=.*[a-z]).{3,}$/)&& passwordValue.length > 2 || passwordValue.match(/^(?=.*[a-z])(?=.*\d).{3,}$/)&& passwordValue.length > 2 || passwordValue.match(/^(?=.*[A-Z])(?=.*\d).{3,}$/)&& passwordValue.length > 2 || passwordValue.match(/^(?=.*[a-z]).{3,}$/)&& passwordValue.length > 2 && !passwordValue.match(/^[A-Za-z0-9]+$/) ){
+                innerBar.style.width = '20px';
+                innerBar.style.backgroundColor = '#ff2400';
+            }
+            if(passwordValue.match(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{5,}$/) && passwordValue.length > 4
+            || passwordValue.match(/^(?=.*[A-Z])(?=.*[a-z]).{5,}$/) && !passwordValue.match(/^[A-Za-z0-9]+$/) && passwordValue.length > 4){
+                innerBar.style.width = '30px';
+                innerBar.style.backgroundColor = '#fd6a02';
+            }
+            if(passwordValue.match(/^(?=.*[A-Z])(?=.*[a-z]).{6,}$/)&& !passwordValue.match(/^[A-Za-z0-9]+$/) && passwordValue.length > 5
+            || passwordValue.match(/^(?=.*[a-z])(?=.*\d).{6,}$/)&& !passwordValue.match(/^[A-Za-z0-9]+$/) && passwordValue.length > 5){
+                innerBar.style.width = '40px';
+                innerBar.style.backgroundColor = '#ffc933';
+            }
+            if(passwordValue.match(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/) && !passwordValue.match(/^[A-Za-z0-9]+$/)&& passwordValue.length > 7){
+                innerBar.style.width = '50px';
+                innerBar.style.backgroundColor = '#3bb143';
+            }
+            
+            // if(innerBar.style.width == '50px'){
+            //     innerBar.classList.add('HideBar')
+            //     outerBar.classList.add('HideBar')
+            // }
+            // else{
+            //     innerBar.classList.remove('HideBar')
+            //     outerBar.classList.remove('HideBar')
+            // }
+            // (!confirmPasswordValue.match(PatternExpression)) ? 
+            //     (confirmPassword.value = (function(){
+            //         name = ''
+            //         for(let i = 0;i<=confirmPasswordValue.length-1;i++){
+            //             if(confirmPasswordValue[i] !== ' '){
+            //             name = name + confirmPasswordValue[i];
+            //             }
+            //         }
+            //         return name;
+                // })()): null;
+            
+        }
+        
+        function checkPasswordLength(){
+            const passwordValue = password.value;
+            (passwordValue.trim() == '') ? (outerBar.style.display = 'none',errorPass.textContent='') : (passwordValue.length < 8) ? showMessage(errorPass,'Should contain eight characters') : (errorPass.textContent = '');
+        }
+        function checkEmailInput(){
+            const emailValue = email.value;
+            const PatternExpression = /^\S+$/;
+            const emailPattern = /^[a-z]+[0-9a-z._]+@[a-z]+\.[a-z]{2,}$/;    
+            (emailValue.endsWith('@gmail.com') && emailValue.match(emailPattern)) ? (errorEnvelope.textContent=' ') : (emailValue !== '' ) ? (errorEnvelope.textContent='') : null;
+            (!emailValue.match(PatternExpression)) ? 
+                (email.value = (function(){
+                    name = ''
+                    for(let i = 0;i<=emailValue.length-1;i++){
+                        if(emailValue[i] !== ' '){
+                            name = name + emailValue[i];
+                        }
+                    }
+                    return name;
+                })()): null;
+        }
+        function checkEmailPattern(){
+            email.setCustomValidity('') ;
+            const emailValue = email.value;
+            const emailPattern = /^[a-z]+[0-9a-z._]+@[a-z]+\.[a-z]{2,}$/;    
+            (emailValue !== '' && !emailValue.endsWith('@gmail.com')|| emailValue !== '' && !emailValue.match(emailPattern)) ? (errorEnvelope.textContent="Please enter a valid email address",errorEnvelope.classList.add('error-message')) : (emailValue == '') ? (errorEnvelope.textContent='') : (errorEnvelope.textContent='');
+            
+        }
+        function checkMobileInput(){
+            mobile.setCustomValidity('');
+            const mobileValue = mobile.value;
+            let invalidNumber = false;
+            let maxValue = 10;
+            const mobilePattern = /^[6-9]{1}[0-9]*$/;
+            (!mobile.value.match(mobilePattern)) ? (mobile.value = '',errorMobile.textContent = 'Should start with 6,7,8 or 9',mobile.setCustomValidity(' ')) : (errorMobile.textContent = '');
+            (mobileValue.length > maxValue) ? (mobile.value = mobileValue.slice(0,10)) : null;
+            (mobileValue == '') ? (errorMobile.textContent = '') : null;
+            (mobileValue !== '' && mobileValue.length < 10) ? (mobile.setCustomValidity(' ')) : (mobile.setCustomValidity(''));
+        }
+        function checkMobilePattern(){
+            const mobileValue = mobile.value;
+            let invalidNumber = false;
+            let maxValue = 10;
+            const mobilePattern = /^[6-9]{1}[0-9]*$/;
+            (mobileValue !== '' && mobileValue.length < 10) ? (errorMobile.classList.add('error-message'),errorMobile.textContent = 'Mobile number is invalid',mobile.setCustomValidity(' ')) : (errorMobile.textContent = '');
+        }
+        username.addEventListener('invalid',function(){
+            (username.value == '') ? (username.setCustomValidity(' '),showMessage(errorUsername,'Username is required'),setTimeout(function(){showMessage(errorUsername,'')},3000)) : null;});
+        password.addEventListener('invalid',function(){
+            password.setCustomValidity(' ')
+            showMessage(errorPass,'Password is required'),
+            setTimeout(function(){showMessage(errorPass,'')},3000)});
+        // confirmPassword.addEventListener('invalid',function(){
+        //     confirmPassword.setCustomValidity(' ')
+        //     showMessage(errorPassword,'Please re-type your password'),
+        //     setTimeout(function(){showMessage(errorPassword,'')},3000)});        
+        email.addEventListener('invalid',function(){
+            (email.value == '') ? (email.setCustomValidity(' '),
+            showMessage(errorEnvelope,'Email is required'),
+            setTimeout(function(){showMessage(errorEnvelope,'')},3000)) : null;});
+        mobile.addEventListener('invalid',function(){
+            (mobile.value == '') ? (mobile.setCustomValidity(' '),
+            showMessage(errorMobile,'Mobile number is required'),
+            setTimeout(function(){showMessage(errorMobile,'')},3000)) : null;});
+        function checkCheckbox(element){
+            var field = document.getElementById(element.id);
+            if(field.checked){
+                field.setCustomValidity('')
+                console.log('checked')
+            }else{
+                field.setCustomValidity('Please agree to the terms and conditions');
+                console.log('not checked')
+            }
+            
+        }    
+
+        let array1 = ['siva','Siva@333','siva@gmail.com',9566830352]
+        
+        function checkCredentials(){
+            if(password.value.length < 8){
+                showMessage(errorPass,'Should contain eight characters')
+                password.focus()
+                return false;
+            }
+            // if(errorPassword.textContent !== 'Passwords matched'){
+            //     confirmPassword.focus() 
+            //     return false;
+            // }
+            if(email.value == array1[2]){
+                errorEnvelope.textContent = 'Email address already in use'
+                email.focus()
+                return false;
+            }
+            if(mobile.value == '9566830352'){   
+                errorMobile.textContent = 'Mobile no already in use'
+                mobile.focus()
+                return false;
+            }
+            if(errorUsername.textContent !== ''){
+                username.focus()
+                return false;
+            }
+            if(errorEnvelope.textContent !== ''){
+                email.focus()
+                return false;
+            }
+            if(errorMobile.textContent !== ''){
+                mobile.focus()
+                return false;
+            }
+            if(errorUsername.textContent == '' && errorPass.textContent == '' && errorEnvelope.textContent == '' && errorMobile.textContent == '' && errorPassword.textContent == 'Passwords matched'){
+                console.log(errorPassword.textContent)
+                return true;
+            }
+        }
+	</script>
+
+</body>
+</html>
